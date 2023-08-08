@@ -4,7 +4,6 @@ import com.google.inject.Injector
 import java.io.File
 import java.io.InputStream
 
-
 interface NookInstance {
     /**
      * Gets the plugin's data folder
