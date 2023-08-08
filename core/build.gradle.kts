@@ -53,4 +53,5 @@ dependencies {
     compileOnly(libs.velocity)
     compileOnly(libs.waterfall)
     compileOnly(libs.spigot)
+    annotationProcessor(libs.lombok)
 }
