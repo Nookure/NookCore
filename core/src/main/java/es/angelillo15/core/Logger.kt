@@ -1,6 +1,11 @@
 package es.angelillo15.core
 
 abstract class Logger {
+    companion object {
+        @JvmStatic
+        var instance: Logger? = null
+    }
+
     abstract fun info(message: String?)
     abstract fun warn(message: String?)
     abstract fun error(message: String?)
@@ -30,7 +35,4 @@ abstract class Logger {
         return msg
     }
 
-    companion object {
-        var instance: Logger? = null
-    }
 }
