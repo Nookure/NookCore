@@ -3,8 +3,6 @@ package es.angelillo15.core.chat.chat;
 import com.google.gson.*;
 import es.angelillo15.core.chat.api.chat.*;
 import es.angelillo15.core.chat.api.chat.hover.content.*;
-import es.angelillo15.mast.api.chat.api.chat.*;
-import es.angelillo15.mast.api.chat.api.chat.hover.content.*;
 
 import java.lang.reflect.Type;
 import java.util.Set;
