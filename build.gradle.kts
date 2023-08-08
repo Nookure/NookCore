@@ -1,14 +1,16 @@
 plugins {
     id("java")
     kotlin("jvm") version "1.9.0"
+    id("maven-publish")
 }
 
-group = "es.angelillo15"
-version = "1.0-SNAPSHOT"
+group = "es.angelillo15.core"
+version = "1.0.0-SNAPSHOT"
 
 allprojects {
     apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "maven-publish")
 
     repositories {
         mavenCentral()
@@ -32,6 +34,19 @@ allprojects {
 
     kotlin {
         jvmToolchain(17);
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["java"])
+                artifact(tasks["shadowJar"])
+
+                groupId = "es.angelillo15.core"
+                artifactId = "NookCore"
+                version = rootProject.version.toString()
+            }
+        }
     }
 }
 
