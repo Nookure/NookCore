@@ -2,15 +2,22 @@ plugins {
     id("java")
     kotlin("jvm") version "1.9.0"
     id("maven-publish")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "es.angelillo15.core"
 version = "1.0.0-SNAPSHOT"
 
+dependencies {
+    implementation(project(":core"))
+    implementation(project(":bootstrap"))
+}
+
 allprojects {
     apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "maven-publish")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {
         mavenCentral()

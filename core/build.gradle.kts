@@ -1,11 +1,3 @@
-plugins {
-    id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-}
-
-group = "es.angelillo15"
-version = "1.0-SNAPSHOT"
-
 tasks.shadowJar {
     relocate("es.angelillo15.configmanager", "es.angelillo15.core.libs.config.manager")
     relocate("org.yaml.snakeyaml", "es.angelillo15.core.libs.snakeyaml")
