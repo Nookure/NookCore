@@ -56,6 +56,10 @@ abstract class CommandParent : Command() {
         return subCommands.containsKey(name)
     }
 
+    fun getCommands(): Collection<SubCommand> {
+        return subCommands.values
+    }
+
     fun registerHelpSubCommand(prefix: String) {
         registerSubCommand(object : SubCommand() {
             override val name: String
