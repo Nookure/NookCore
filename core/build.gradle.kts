@@ -1,3 +1,8 @@
+plugins {
+    kotlin("jvm") version "1.9.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
 tasks.shadowJar {
     relocate("es.angelillo15.configmanager", "es.angelillo15.core.libs.config.manager")
     relocate("org.yaml.snakeyaml", "es.angelillo15.core.libs.snakeyaml")
@@ -23,27 +28,55 @@ tasks.shadowJar {
     relocate("com.github.benmanes.caffeine", "es.angelillo15.core.libs.caffeine")
     relocate("com.craftmend.storm", "es.angelillo15.core.libs.storm")
     relocate("javassist", "es.angelillo15.core.libs.javassist")
+    archiveFileName.set("nookcore-core-${rootProject.version}.jar")
 }
 
 dependencies {
-    api(libs.adventureApi)
-    api(libs.adventureBukkit)
-    api(libs.adventureBungee)
-    api(libs.adventureLegacy)
-    api(libs.caffeine)
-    api(libs.bundles.invAPI)
-    api(libs.configUpdater)
-    api(libs.snakeYaml)
-    api(libs.simpleYaml)
-    api(libs.jedis)
-    api(libs.hikariCP)
-    api(libs.caffeine)
-    api(libs.storm)
-    api(libs.configManager)
-    api(libs.miniMessage)
-    api(libs.guice)
+    implementation(libs.adventureApi)
+    implementation(libs.adventureBukkit)
+    implementation(libs.adventureBungee)
+    implementation(libs.adventureLegacy)
+    implementation(libs.caffeine)
+    implementation(libs.bundles.invAPI)
+    implementation(libs.configUpdater)
+    implementation(libs.snakeYaml)
+    implementation(libs.simpleYaml)
+    implementation(libs.jedis)
+    implementation(libs.hikariCP)
+    implementation(libs.caffeine)
+    implementation(libs.storm)
+    implementation(libs.configManager)
+    implementation(libs.miniMessage)
+    implementation(libs.guice)
     compileOnly(libs.velocity)
     compileOnly(libs.waterfall)
     compileOnly(libs.spigot)
     annotationProcessor(libs.lombok)
+    compileOnly(project(":bootstrap"))
+}
+
+kotlin {
+    jvmToolchain(17);
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "nookureRepository"
+            url = uri("https://repo.nookure.com/releases")
+            credentials(PasswordCredentials::class)
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "es.angelillo15.core"
+            artifactId = "nookcore-core"
+            version = "${rootProject.version}"
+            shadow.component(this)
+        }
+    }
 }

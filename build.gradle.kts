@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "es.angelillo15.core"
-version = "1.0.0-SNAPSHOT"
+version = "1.0.4"
 
 dependencies {
     implementation(project(":core"))
@@ -15,7 +15,6 @@ dependencies {
 
 allprojects {
     apply(plugin = "java")
-    apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "maven-publish")
     apply(plugin = "com.github.johnrengelman.shadow")
 
@@ -38,22 +37,4 @@ allprojects {
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
-
-    kotlin {
-        jvmToolchain(17);
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                from(components["java"])
-                artifact(tasks["shadowJar"])
-
-                groupId = "es.angelillo15.core"
-                artifactId = "NookCore"
-                version = rootProject.version.toString()
-            }
-        }
-    }
 }
-

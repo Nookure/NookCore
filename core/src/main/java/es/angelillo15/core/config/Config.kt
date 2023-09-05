@@ -6,7 +6,7 @@ import es.angelillo15.core.NookInstance
 
 import java.io.File
 
-class Config {
+open class Config {
     @Inject
     lateinit var plugin: NookInstance
 
